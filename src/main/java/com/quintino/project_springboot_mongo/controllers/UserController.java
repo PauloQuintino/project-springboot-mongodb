@@ -1,4 +1,4 @@
-package com.quintino.project_springboot_mongo.resources;
+package com.quintino.project_springboot_mongo.controllers;
 
 import com.quintino.project_springboot_mongo.domain.User;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/users")
-public class UserResource {
+public class UserController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<User>> findAll() {
