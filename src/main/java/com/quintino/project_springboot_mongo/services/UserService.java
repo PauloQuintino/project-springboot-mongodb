@@ -2,6 +2,7 @@ package com.quintino.project_springboot_mongo.services;
 
 import com.quintino.project_springboot_mongo.domain.User;
 import com.quintino.project_springboot_mongo.repository.UserRepository;
+import com.quintino.project_springboot_mongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,9 @@ public class UserService {
         return repository.findAll();
     }
 
-
+    public User findById(String id) {
+        Optional<User> user = repository.findById(id);
+        return user.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado!"));
+    }
 
 }
