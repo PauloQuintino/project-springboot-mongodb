@@ -1,6 +1,7 @@
 package com.quintino.project_springboot_mongo.services;
 
 import com.quintino.project_springboot_mongo.domain.User;
+import com.quintino.project_springboot_mongo.dto.UserDTO;
 import com.quintino.project_springboot_mongo.repository.UserRepository;
 import com.quintino.project_springboot_mongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,14 @@ public class UserService {
     public User findById(String id) {
         Optional<User> user = repository.findById(id);
         return user.orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado!"));
+    }
+
+    public User insert(User user){
+        return repository.insert(user);
+    }
+
+    public User fromDTO(UserDTO objDTO){
+        return new User(objDTO.getId(), objDTO.getName(), objDTO.getEmail());
     }
 
 }
