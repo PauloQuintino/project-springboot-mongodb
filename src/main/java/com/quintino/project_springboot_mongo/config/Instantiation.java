@@ -2,6 +2,7 @@ package com.quintino.project_springboot_mongo.config;
 
 import com.quintino.project_springboot_mongo.domain.Post;
 import com.quintino.project_springboot_mongo.domain.User;
+import com.quintino.project_springboot_mongo.dto.AuthorDTO;
 import com.quintino.project_springboot_mongo.repository.PostRepository;
 import com.quintino.project_springboot_mongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class Instantiation implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT-3"));
 
         userRepository.deleteAll(); //limpa a coleção no MongoDB
         postRepository.deleteAll();
@@ -39,8 +40,8 @@ public class Instantiation implements CommandLineRunner {
         List<User> users = Arrays.asList(maria, alex, bob);
         userRepository.saveAll(users);
 
-        Post post1 = new Post(null, sdf.parse("28/03/2018"), "Viajando!", "Estou viajanda para São Paulo! Flw!", maria);
-        Post post2 = new Post(null, sdf.parse("30/03/2018"), "Bom dia", "Hoje acordei feliz e já tamo como em SP...", maria);
+        Post post1 = new Post(null, sdf.parse("28/03/2018"), "Viajando!", "Estou viajanda para São Paulo! Flw!", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("30/03/2018"), "Bom dia", "Hoje acordei feliz e já tamo como em SP...", new AuthorDTO(maria));
 
         List<Post> posts = Arrays.asList(post1, post2);
         postRepository.saveAll(posts);
