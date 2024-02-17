@@ -45,6 +45,13 @@ public class UserController {
     }
 
     //update user
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<User> update(@PathVariable String id, @RequestBody UserDTO objDTO){
+        User userUpdated = service.fromDTO(objDTO);
+        userUpdated.setId(id);
+        service.update(userUpdated);
+        return ResponseEntity.noContent().build();
+    }
 
     //delete user by id
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -52,5 +59,6 @@ public class UserController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
 
 }
