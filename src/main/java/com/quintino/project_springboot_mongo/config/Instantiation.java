@@ -28,7 +28,7 @@ public class Instantiation implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT-3"));
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
 
         userRepository.deleteAll(); //limpa a coleção no MongoDB
         postRepository.deleteAll();

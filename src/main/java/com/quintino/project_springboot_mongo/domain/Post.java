@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-@Document(collation = "post")
+@Document(collection = "post")
 public class Post implements Serializable {
 
     @Id
