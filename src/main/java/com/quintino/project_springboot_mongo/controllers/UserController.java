@@ -1,5 +1,6 @@
 package com.quintino.project_springboot_mongo.controllers;
 
+import com.quintino.project_springboot_mongo.domain.Post;
 import com.quintino.project_springboot_mongo.domain.User;
 import com.quintino.project_springboot_mongo.dto.UserDTO;
 import com.quintino.project_springboot_mongo.services.UserService;
@@ -60,5 +61,11 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    //Get Users posts
+    @RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts());
+    }
 
 }
