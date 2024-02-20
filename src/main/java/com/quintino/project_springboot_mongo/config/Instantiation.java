@@ -3,6 +3,8 @@ package com.quintino.project_springboot_mongo.config;
 import com.quintino.project_springboot_mongo.domain.Post;
 import com.quintino.project_springboot_mongo.domain.User;
 import com.quintino.project_springboot_mongo.dto.AuthorDTO;
+import com.quintino.project_springboot_mongo.dto.CommentDTO;
+import com.quintino.project_springboot_mongo.dto.UserDTO;
 import com.quintino.project_springboot_mongo.repository.PostRepository;
 import com.quintino.project_springboot_mongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,13 @@ public class Instantiation implements CommandLineRunner {
 
         Post post1 = new Post(null, sdf.parse("28/03/2018"), "Viajando!", "Estou viajanda para São Paulo! Flw!", new AuthorDTO(maria));
         Post post2 = new Post(null, sdf.parse("30/03/2018"), "Bom dia", "Hoje acordei feliz e já tamo como em SP...", new AuthorDTO(maria));
+
+        CommentDTO c1 = new CommentDTO("Boa viagem mano!", sdf.parse("21/03/2018"), new UserDTO(alex));
+        CommentDTO c2 = new CommentDTO("Aproveite!", sdf.parse("22/03/2018"), new UserDTO(bob));
+        CommentDTO c3 = new CommentDTO("Tenha um ótimo dia!", sdf.parse("23/03/2018"), new UserDTO(alex));
+
+        post1.getComments().addAll(Arrays.asList(c1,c2));
+        post2.getComments().addAll(Arrays.asList(c3));
 
         List<Post> posts = Arrays.asList(post1, post2);
         postRepository.saveAll(posts);
